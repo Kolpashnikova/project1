@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Talk Like L33t</title>
+        <script src="https://code.jquery.com/jquery-1.12.3.js" integrity="sha256-1XMpEtA4eKXNNpXcJ1pmMPs8JV+nwLdEqwiJeCQEkyc=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-migrate-1.4.0.js" 			  integrity="sha256-DytMCQYumd79nP+pFhR+qtqTVU/SUjJSZP2GZIlEoeY=" 			  crossorigin="anonymous"></script>
+        <script>
+            window.onload = function()
+            {
+                $('#btnTranslate').on('click', translateText);
+                $('#textToTranslate').keypress(function(e){
+                    if(e.which==13){
+                        $('#btnTranslate').click()
+                        return false;
+                    }});
+            }
+            function translateText()
+            {
+                var str = $('#textToTranslate').val();
+                var textToTranslate = str.replace(/ /g, '+');
+
+                var url = "https://montanaflynn-l33t-sp34k.p.mashape.com/encode?text=" +textToTranslate;
+                $.ajax({url: url,
+                       headers: {"X-Mashape-Key": "s9AyKukQHZmshxqQyxm3YxJJcnf4p1OAl4ljsnpls72tTSKsGI"},
+                       success: function(result){
+                           $("#result").html(result);
+                       }})
+            }            
+        </script>
+        
+        <style>
+            h1{
+                font-family: Arial;
+            }
+            textarea {
+                width: 400px;
+                height: 100px;
+                background-color: #eeeeee;
+            }
+            label {
+                font-family: Arial, Verdana, sans-serif;
+            }
+            button {
+                width: 400px;
+                background-color: bisque;
+                font-weight: bold;
+            }
+            #translator
+            {
+                border: 1px solid black;
+                padding: 10px;
+                background-color: #00aa00;
+                width: 420px;
+            }
+            #result
+            {
+                margin-top: 20px;
+                border: 1px solid black;
+                background-color: white;
+                height: 50px;
+            }        
+        
+        </style>
+    </head>
+    <body>
+        <h1>Talk Like L33t App...</h1>
+        <div id="translator">
+            <label for="textToTranslate">Text to Translate </label><br/>
+            <textarea id="textToTranslate"></textarea><br/>
+            <button id="btnTranslate">Translate Text to L33t speak</button>
+            <div id="result"></div>
+        </div>
+    </body>
+</html>
