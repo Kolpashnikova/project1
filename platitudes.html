@@ -8,6 +8,11 @@
             window.onload = function()
             {
                 $('#btnTranslate').on('click', translateText);
+                $('#textToTranslate').keypress(function(e){
+                    if(e.which==13){
+                        $('#btnTranslate').click()
+                        return false;
+                    }});                
             }
             function translateText()
             {
@@ -34,7 +39,7 @@
         
         <style>
             h1{
-                font-family: Arial;
+                font-family: Verdana, Arial, sans-serif;
             }
             textarea {
                 width: 400px;
@@ -42,7 +47,7 @@
                 background-color: #eeeeee;
             }
             label {
-                font-family: Arial, Verdana, sans-serif;
+                font-family: Verdana, Arial, sans-serif;
             }
             button {
                 width: 400px;
@@ -53,7 +58,7 @@
             {
                 border: 1px solid black;
                 padding: 10px;
-                background-color: #00aa00;
+                background-color: #6622ee;
                 width: 420px;
             }
             #result
@@ -67,7 +72,7 @@
         </style>
     </head>
     <body>
-        <h1>Platitudes from Markus Weisen-Schmutz App</h1>
+        <h1>Platitudes from Markus <br/>Weisen-Schmutz App</h1>
         <div id="translator">
             <label for="textToTranslate">Insert Your Question for an Advice from Markus Here</label><br/>
             <textarea id="textToTranslate"></textarea><br/>
