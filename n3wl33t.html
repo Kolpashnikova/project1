@@ -19,12 +19,22 @@
                 var str = $('#textToTranslate').val();
                 var textToTranslate = str.replace(/ /g, '+');
 
-                var url = "https://montanaflynn-l33t-sp34k.p.mashape.com/encode?text=" +textToTranslate;
-                $.ajax({url: url,
-                       headers: {"X-Mashape-Key": "s9AyKukQHZmshxqQyxm3YxJJcnf4p1OAl4ljsnpls72tTSKsGI"},
-                       success: function(result){
-                           $("#result").html(result);
-                       }})
+                var url = "https://montanaflynn-l33t-sp34k.p.mashape.com/encode?text=" + textToTranslate;
+                console.log('querying ' + url)
+
+                $.ajax({
+                    url: url,
+                    headers: {"X-Mashape-Key": "s9AyKukQHZmshxqQyxm3YxJJcnf4p1OAl4ljsnpls72tTSKsGI"}
+                }).done(function(result) {
+                    console.log( "success:" + result)
+                    $('#result').html(result)
+                }).fail(function(result) {
+                    ERROR = result
+                    console.log( "error:" + result.responseText )
+                    $('#result').html(result.responseText)
+                }).always(function() {
+                    console.log( "finished" )
+                })
             }            
         </script>
         
